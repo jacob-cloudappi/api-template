@@ -1,0 +1,1703 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API-Customers",
+    "description": "Single or multilined detailed API description. Can be written on HTML or [CommonMark](http://commonmark.org/help/)\n",
+    "version": "v1",
+    "termsOfService": "http://terms-of-service.organization.es",
+    "contact": {
+      "name": "API responsible person",
+      "url": "http://api.support.organization.es",
+      "email": "api.support@organization.es"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://dev-api.organization.es/api-name/v1",
+      "description": "Development server"
+    },
+    {
+      "url": "https://api.organization.es/api-name/v1",
+      "description": "Production server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Customers",
+      "description": "Operations and resources related to customers"
+    },
+    {
+      "name": "Customer accounts",
+      "description": "Operations and resources related to customer accounts"
+    },
+    {
+      "name": "Monitoring",
+      "description": "Operations related to monitoring"
+    }
+  ],
+  "security": [
+    {
+      "oAuth2": [
+        "write",
+        "read"
+      ]
+    }
+  ],
+  "paths": {
+    "/customers": {
+      "post": {
+        "summary": "Create a customer",
+        "description": "Description for operation that allows create a customer",
+        "operationId": "createCustomer",
+        "tags": [
+          "Customers"
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/customerCreationRequestBoody"
+        },
+        "responses": {
+          "201": {
+            "$ref": "#/components/responses/customerCreationResponse"
+          },
+          "202": {
+            "$ref": "#/components/responses/customerAcceptedResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbiddenResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/tooManyRequestsResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/internalServerErrorResponse"
+          }
+        }
+      }
+    },
+    "/customers/{customerId}": {
+      "get": {
+        "summary": "Retrieve customer information",
+        "description": "Description for operation that allows retrieve customer information",
+        "operationId": "retrieveCustomerInfo",
+        "tags": [
+          "Customers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/customerIdPathParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/customerRetrievalResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbiddenResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFoundResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/tooManyRequestsResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/internalServerErrorResponse"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a customer",
+        "description": "Description for operation that allows update a customer",
+        "operationId": "updateCustomer",
+        "tags": [
+          "Customers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/customerIdPathParam"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/customerUpdateRequestBoody"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/customerUpdateResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbiddenResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFoundResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/tooManyRequestsResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/internalServerErrorResponse"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update partial customer information",
+        "description": "Description for operation that allows update partial customer information",
+        "operationId": "updatePartialCustomerInfo",
+        "tags": [
+          "Customers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/customerIdPathParam"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/customerPartialUpdateRequestBody"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/customerPartialUpdateResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbiddenResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFoundResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/tooManyRequestsResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/internalServerErrorResponse"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a customer",
+        "description": "Description for operation that allows delete a customer",
+        "operationId": "deleteCustomer",
+        "tags": [
+          "Customers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/customerIdPathParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/customerDeleteResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbiddenResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFoundResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/tooManyRequestsResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/internalServerErrorResponse"
+          }
+        }
+      }
+    },
+    "/customers/{customerId}/accounts": {
+      "post": {
+        "summary": "Create a customer account",
+        "description": "Description for operation that allows create a customer account",
+        "operationId": "createCustomerAccount",
+        "tags": [
+          "Customer accounts"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/customerIdPathParam"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/customerAccountCreationRequestBody"
+        },
+        "responses": {
+          "201": {
+            "$ref": "#/components/responses/customerAccountCreationResponse"
+          },
+          "202": {
+            "$ref": "#/components/responses/customerAccountAcceptedResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbiddenResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFoundResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/tooManyRequestsResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/internalServerErrorResponse"
+          }
+        }
+      },
+      "get": {
+        "summary": "Retrieve customer accounts",
+        "description": "Description for operation that allows retrieve customer accounts",
+        "operationId": "retrieveCustomerAccountsByCustomerId",
+        "tags": [
+          "Customer accounts"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/initParam"
+          },
+          {
+            "$ref": "#/components/parameters/limitParam"
+          },
+          {
+            "$ref": "#/components/parameters/totalParam"
+          },
+          {
+            "$ref": "#/components/parameters/orderByParam"
+          },
+          {
+            "$ref": "#/components/parameters/selectParam"
+          },
+          {
+            "$ref": "#/components/parameters/excludeParam"
+          },
+          {
+            "$ref": "#/components/parameters/expandParam"
+          },
+          {
+            "$ref": "#/components/parameters/filterParam"
+          },
+          {
+            "$ref": "#/components/parameters/customerIdPathParam"
+          }
+        ],
+        "responses": {
+          "206": {
+            "$ref": "#/components/responses/customerAccountsListRetrievalResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbiddenResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFoundResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/tooManyRequestsResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/internalServerErrorResponse"
+          }
+        }
+      }
+    },
+    "/customers/{customerId}/accounts/{accountId}": {
+      "get": {
+        "summary": "Retrieve customer account information",
+        "description": "Description for operation that allows retrieve customer account information",
+        "operationId": "retrieveCustomerAccount",
+        "tags": [
+          "Customer accounts"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/customerIdPathParam"
+          },
+          {
+            "$ref": "#/components/parameters/accountIdPathParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/customerAccountRetrievalResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbiddenResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFoundResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/tooManyRequestsResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/internalServerErrorResponse"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete customer account",
+        "description": "Description for operation that allows delete a customer account",
+        "operationId": "deleteCustomerAccount",
+        "tags": [
+          "Customer accounts"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/customerIdPathParam"
+          },
+          {
+            "$ref": "#/components/parameters/accountIdPathParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/customerAccountDeleteResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbiddenResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFoundResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/tooManyRequestsResponse"
+          },
+          "default": {
+            "$ref": "#/components/responses/internalServerErrorResponse"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "customerIdPathParam": {
+        "name": "customerId",
+        "in": "path",
+        "required": true,
+        "description": "The id of the customer",
+        "schema": {
+          "$ref": "#/components/schemas/uuid"
+        },
+        "examples": {
+          "Example1": {
+            "value": "62977d46-7a50-41c9-8d84-38272ac2a8df"
+          }
+        }
+      },
+      "accountIdPathParam": {
+        "name": "accountId",
+        "in": "path",
+        "required": true,
+        "description": "The id of the account",
+        "schema": {
+          "$ref": "#/components/schemas/uuid"
+        },
+        "examples": {
+          "Example1": {
+            "value": "62977d46-7a50-41c9-8d84-38272ac2a8df"
+          }
+        }
+      },
+      "initParam": {
+        "in": "query",
+        "name": "$init",
+        "description": "Initial record to be shown in the list. \n* Minimum value: 1\n* Maximum value: Total of records\n",
+        "schema": {
+          "type": "integer",
+          "format": "int32",
+          "default": 1,
+          "minimum": 1
+        },
+        "required": false
+      },
+      "limitParam": {
+        "in": "query",
+        "name": "$limit",
+        "description": "Maximum number of records per page.\n* Minimum value: 1\n* Maximum value: 250\n",
+        "schema": {
+          "type": "integer",
+          "format": "int32",
+          "default": 25
+        },
+        "required": false
+      },
+      "totalParam": {
+        "in": "query",
+        "name": "$total",
+        "description": "Indicates whether the _total_ and _total_pages_ attributes should be calculated and returned in the _metadata.paging_ object of the standard response.\n",
+        "schema": {
+          "type": "boolean",
+          "default": false
+        },
+        "required": false
+      },
+      "selectParam": {
+        "in": "query",
+        "name": "$select",
+        "schema": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 100,
+          "items": {
+            "type": "string"
+          }
+        },
+        "description": "Allows you to select the attributes of the resource that you want to obtain in the query.\nIt is recommended for use when you only want to obtain a few attributes from a complex resource.\nIt can be specified as an array of attributes.\n",
+        "example": [
+          "id",
+          "long_description",
+          "type"
+        ]
+      },
+      "excludeParam": {
+        "in": "query",
+        "name": "$exclude",
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "maxItems": 100
+        },
+        "description": "Allows you to exclude certain attributes of the resource.\nIt is recommended for use when you want to exclude some attributes from a complex resource.\nIt can be specified as an array of attributes.\n",
+        "example": [
+          "id",
+          "type"
+        ]
+      },
+      "expandParam": {
+        "in": "query",
+        "name": "$expand",
+        "schema": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 100,
+          "items": {
+            "type": "string"
+          }
+        },
+        "description": "Indicates a list of sub-attributes that you want to expand.\nIt can be specified as an array of attributes.\n",
+        "example": [
+          "subcategories",
+          "typeName"
+        ]
+      },
+      "orderByParam": {
+        "in": "query",
+        "name": "$orderby",
+        "schema": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 100,
+          "items": {
+            "type": "string"
+          }
+        },
+        "description": "It allows to indicate the ordering criteria of a query.\nIt can be specified as an array of attributes.\n",
+        "example": [
+          "date-desc"
+        ]
+      },
+      "filterParam": {
+        "in": "query",
+        "name": "$filter",
+        "schema": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "description": "Indicates the filter criteria for a complex query.",
+        "example": "substringof('t',alias) OR substringof('des',description)"
+      },
+      "queryParam": {
+        "in": "query",
+        "name": "queryParameter",
+        "description": "Any parameter that can be passed using the _query string_.\nTypes can be numeric (integer, float, double), string, boolean, etc. \n",
+        "schema": {
+          "type": "string"
+        },
+        "required": false
+      },
+      "headerParam": {
+        "in": "header",
+        "name": "headerParameter",
+        "description": "Any parameter that can be passed using HTTP custom headers.\n",
+        "schema": {
+          "type": "string"
+        },
+        "required": false
+      }
+    },
+    "securitySchemes": {
+      "oAuth2": {
+        "description": "OAuth 2.0 authentication.",
+        "type": "oauth2",
+        "flows": {
+          "authorizationCode": {
+            "authorizationUrl": "https://api.organization.es/api-oAuth2/v1/authorize",
+            "tokenUrl": "https://api.organization.es/api-oAuth2/v1/token",
+            "scopes": {
+              "read": "Grant read-only access to all your data",
+              "write": "Grant write-only access to all YOUR data"
+            }
+          },
+          "password": {
+            "tokenUrl": "https://api.organization.es/api-oAuth2/v1/token",
+            "scopes": {
+              "read": "Grant read-only access to all your data",
+              "write": "Grant write-only access to all your data"
+            }
+          },
+          "clientCredentials": {
+            "tokenUrl": "https://api.organization.es/api-oAuth2/v1/token",
+            "scopes": {
+              "read": "Grant read-only access to all your data",
+              "write": "Grant write-only access to all your data"
+            }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "standardError": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Code of the error",
+            "example": 100
+          },
+          "message": {
+            "type": "string",
+            "description": "Message of the error",
+            "example": "Error message"
+          },
+          "stackTrace": {
+            "type": "string",
+            "description": "Stack trace error from server",
+            "example": "System.NullReferenceException: Object reference not set to an instance of an object."
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ]
+      },
+      "standardPagingLink": {
+        "type": "object",
+        "properties": {
+          "href": {
+            "type": "string",
+            "description": "URL encoded link",
+            "example": "https://api.organization.es/api-users/v1/users?init=1&limit=25&total=false"
+          }
+        }
+      },
+      "standardPaging": {
+        "type": "object",
+        "description": "Pagination information object",
+        "properties": {
+          "init": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Initial record of the page",
+            "example": 1
+          },
+          "limit": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Number of records per page",
+            "example": 25
+          },
+          "total": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Total number of records",
+            "example": 35
+          },
+          "numPage": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Page number",
+            "example": 1
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Total pages number",
+            "example": 7
+          },
+          "links": {
+            "type": "object",
+            "properties": {
+              "self": {
+                "description": "Link to actual page itself",
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/standardPagingLink"
+                  }
+                ]
+              },
+              "previous": {
+                "description": "Link to previous page",
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/standardPagingLink"
+                  }
+                ]
+              },
+              "next": {
+                "description": "Link to next page",
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/standardPagingLink"
+                  }
+                ]
+              },
+              "first": {
+                "description": "Link to first page",
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/standardPagingLink"
+                  }
+                ]
+              },
+              "last": {
+                "description": "Link to last page",
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/standardPagingLink"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "previous",
+              "next"
+            ]
+          }
+        },
+        "required": [
+          "init",
+          "limit",
+          "links"
+        ]
+      },
+      "standardResponse": {
+        "properties": {
+          "data": {
+            "type": "object"
+          }
+        }
+      },
+      "standardErrorResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/standardResponse"
+          },
+          {
+            "properties": {
+              "errors": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/standardError"
+                }
+              }
+            }
+          }
+        ],
+        "required": [
+          "errors"
+        ]
+      },
+      "standardPagedResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/standardResponse"
+          },
+          {
+            "properties": {
+              "paging": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/standardPaging"
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "required": [
+          "paging",
+          "data"
+        ]
+      },
+      "uuid": {
+        "type": "string",
+        "format": "uuid",
+        "minLength": 36,
+        "maxLength": 36,
+        "pattern": "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}",
+        "example": "62977d46-7a50-41c9-8d84-38272ac2a8df"
+      },
+      "locationHeader": {
+        "type": "string",
+        "example": "/resource/1234"
+      },
+      "accountTypeBasicData": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the account",
+            "example": "Saving account"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the account",
+            "example": "Accounts destined to savings"
+          }
+        }
+      },
+      "accountType": {
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "accountId": {
+                "description": "The id of the account",
+                "type": "string",
+                "format": "uuid",
+                "minLength": 36,
+                "maxLength": 36,
+                "pattern": "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}",
+                "example": "62977d46-7a50-41c9-8d84-38272ac2a8df"
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/accountTypeBasicData"
+          }
+        ]
+      },
+      "customerBasicData": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "description": "The first name of the customer",
+            "maxLength": 30,
+            "example": "John"
+          },
+          "lastName": {
+            "type": "string",
+            "description": "The last name of the customer",
+            "maxLength": 30,
+            "example": "Doe"
+          },
+          "email": {
+            "type": "string",
+            "description": "The email of the customer",
+            "maxLength": 100,
+            "format": "email",
+            "example": "john.doe@email.com"
+          }
+        }
+      },
+      "customerCreationAndUpdateData": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/customerBasicData"
+          }
+        ],
+        "required": [
+          "firstName",
+          "lastName",
+          "email"
+        ]
+      },
+      "customer": {
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "customerId": {
+                "description": "The id of the customer",
+                "type": "string",
+                "format": "uuid",
+                "minLength": 36,
+                "maxLength": 36,
+                "pattern": "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}",
+                "example": "62977d46-7a50-41c9-8d84-38272ac2a8df"
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/customerBasicData"
+          }
+        ]
+      },
+      "customerPartialUpdateData": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/customerBasicData"
+          }
+        ]
+      },
+      "customerAccountBasicData": {
+        "type": "object",
+        "properties": {
+          "balance": {
+            "type": "number",
+            "format": "double",
+            "multipleOf": 0.01,
+            "example": 100000000.99
+          },
+          "currency": {
+            "type": "string",
+            "maxLength": 3,
+            "example": "EUR"
+          }
+        }
+      },
+      "customerAccountCreationData": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/customerAccountBasicData"
+          },
+          {
+            "properties": {
+              "accountTypeId": {
+                "type": "string",
+                "format": "uuid",
+                "minLength": 36,
+                "maxLength": 36,
+                "pattern": "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}",
+                "example": "62977d46-7a50-41c9-8d84-38272ac2a8df"
+              }
+            }
+          }
+        ],
+        "required": [
+          "accountTypeId",
+          "balance",
+          "currency"
+        ]
+      },
+      "customerAccount": {
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "accountId": {
+                "type": "string",
+                "description": "The id of the customer account",
+                "format": "uuid",
+                "minLength": 36,
+                "maxLength": 36,
+                "pattern": "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}",
+                "example": "62977d46-7a50-41c9-8d84-38272ac2a8df"
+              },
+              "accountNumber": {
+                "type": "string",
+                "example": "0000051571"
+              },
+              "accountType": {
+                "$ref": "#/components/schemas/accountType"
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/customerAccountBasicData"
+          }
+        ]
+      }
+    },
+    "requestBodies": {
+      "customerCreationRequestBoody": {
+        "description": "Customer creation request body",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/customerCreationAndUpdateData"
+            },
+            "example": {
+              "firstName": "John",
+              "lastName": "Doe",
+              "email": "john.doe@email.com"
+            }
+          }
+        }
+      },
+      "customerUpdateRequestBoody": {
+        "description": "Customer update request body",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/customerCreationAndUpdateData"
+            },
+            "example": {
+              "firstName": "John",
+              "lastName": "Doe",
+              "email": "john.doe@email.com"
+            }
+          }
+        }
+      },
+      "customerPartialUpdateRequestBody": {
+        "description": "Customer partial update request body",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/customerPartialUpdateData"
+            },
+            "example": {
+              "firstName": "John",
+              "lastName": "Doe",
+              "email": "john.doe@email.com"
+            }
+          }
+        }
+      },
+      "customerAccountCreationRequestBody": {
+        "description": "Customer account creation request body",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/customerAccountCreationData"
+            },
+            "example": {
+              "balance": 100000000.99,
+              "currency": "EUR",
+              "accountTypeId": "62977d46-7a50-41c9-8d84-38272ac2a8df"
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "badRequestResponse": {
+        "description": "Bad request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/standardErrorResponse"
+            },
+            "example": {
+              "errors": [
+                {
+                  "code": 400,
+                  "message": "Bad request"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "unauthorizedResponse": {
+        "description": "Unauthorized",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/standardErrorResponse"
+            },
+            "example": {
+              "errors": [
+                {
+                  "code": 401,
+                  "message": "Unauthorized"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "forbiddenResponse": {
+        "description": "Forbidden",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/standardErrorResponse"
+            },
+            "example": {
+              "errors": [
+                {
+                  "code": 403,
+                  "message": "Forbidden"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "notFoundResponse": {
+        "description": "Not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/standardErrorResponse"
+            },
+            "example": {
+              "errors": [
+                {
+                  "code": 404,
+                  "message": "Not found"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "tooManyRequestsResponse": {
+        "description": "Too many requests",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/standardErrorResponse"
+            },
+            "example": {
+              "errors": [
+                {
+                  "code": 429,
+                  "message": "Too many requests"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "internalServerErrorResponse": {
+        "description": "Internal server error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/standardErrorResponse"
+            },
+            "example": {
+              "errors": [
+                {
+                  "code": 500,
+                  "message": "Internal server error"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "customerCreationResponse": {
+        "description": "Customer creation response",
+        "headers": {
+          "Location": {
+            "description": "Resource location",
+            "schema": {
+              "$ref": "#/components/schemas/locationHeader"
+            }
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/standardResponse"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/customer"
+                    }
+                  }
+                }
+              ]
+            },
+            "examples": {
+              "Example1": {
+                "$ref": "#/components/examples/exampleDataCustomers"
+              }
+            }
+          }
+        }
+      },
+      "customerAcceptedResponse": {
+        "description": "Customer creation response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/standardResponse"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/customerCreationAndUpdateData"
+                    }
+                  }
+                }
+              ]
+            },
+            "example": {
+              "data": {
+                "firstName": "John",
+                "lastName": "Doe",
+                "email": "john.doe@email.com"
+              }
+            }
+          }
+        }
+      },
+      "customerRetrievalResponse": {
+        "description": "Customer retrieval response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/standardResponse"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/customer"
+                    }
+                  }
+                }
+              ]
+            },
+            "examples": {
+              "Example1": {
+                "$ref": "#/components/examples/exampleGetAllCustomers"
+              },
+              "Example2": {
+                "$ref": "#/components/examples/exampleGetAllCustomers2"
+              }
+            }
+          }
+        }
+      },
+      "customerUpdateResponse": {
+        "description": "Customer update response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/standardResponse"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/customer"
+                    }
+                  }
+                }
+              ]
+            },
+            "examples": {
+              "Example1": {
+                "$ref": "#/components/examples/exampleDataCustomers"
+              }
+            }
+          }
+        }
+      },
+      "customerPartialUpdateResponse": {
+        "description": "Customer partial update response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/standardResponse"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/customer"
+                    }
+                  }
+                }
+              ]
+            },
+            "examples": {
+              "Example1": {
+                "$ref": "#/components/examples/exampleDataCustomers"
+              }
+            }
+          }
+        }
+      },
+      "customerDeleteResponse": {
+        "description": "Customer delete response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/standardResponse"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/customer"
+                    }
+                  }
+                }
+              ]
+            },
+            "examples": {
+              "Example1": {
+                "$ref": "#/components/examples/exampleDataCustomers"
+              }
+            }
+          }
+        }
+      },
+      "customerAccountCreationResponse": {
+        "description": "Customer account creation response",
+        "headers": {
+          "Location": {
+            "description": "Resource location",
+            "schema": {
+              "$ref": "#/components/schemas/locationHeader"
+            }
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/standardResponse"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/customerAccount"
+                    }
+                  }
+                }
+              ]
+            },
+            "examples": {
+              "Example1": {
+                "$ref": "#/components/examples/examplePostCustomersAccounts"
+              }
+            }
+          }
+        }
+      },
+      "customerAccountAcceptedResponse": {
+        "description": "Customer account creation response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/standardResponse"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/customerAccountCreationData"
+                    }
+                  }
+                }
+              ]
+            },
+            "example": {
+              "data": {
+                "balance": 100000000.99,
+                "currency": "EUR",
+                "accountTypeId": "62977d46-7a50-41c9-8d84-38272ac2a8df"
+              }
+            }
+          }
+        }
+      },
+      "customerAccountsListRetrievalResponse": {
+        "description": "Customer accounts list retrieval response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/standardPagedResponse"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/customerAccount"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "examples": {
+              "Example1": {
+                "$ref": "#/components/examples/exampleGetAllCustomersAccounts"
+              }
+            }
+          }
+        }
+      },
+      "customerAccountRetrievalResponse": {
+        "description": "Customer account retrieval response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/standardResponse"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/customerAccount"
+                    }
+                  }
+                }
+              ]
+            },
+            "examples": {
+              "Example1": {
+                "$ref": "#/components/examples/exampleGetOneCustomersAccounts"
+              }
+            }
+          }
+        }
+      },
+      "customerAccountDeleteResponse": {
+        "description": "Customer account delete response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/standardResponse"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/customerAccount"
+                    }
+                  }
+                }
+              ]
+            },
+            "examples": {
+              "Example1": {
+                "$ref": "#/components/examples/exampleDeleteCustomersAccounts"
+              }
+            }
+          }
+        }
+      }
+    },
+    "examples": {
+      "exampleDataAccountTypes": {
+        "value": {
+          "data": {
+            "accountId": "62977d46-7a50-41c9-8d84-38272ac2a8df",
+            "name": "Saving account",
+            "description": "Accounts destined to savings"
+          }
+        }
+      },
+      "exampleDataAccountTypes2": {
+        "value": {
+          "data": {
+            "accountId": "62977d46-7a50-41c9-8d84-38272ac333333",
+            "name": "Saving account 2",
+            "description": "Accounts destined to savings 2"
+          }
+        }
+      },
+      "exampleDeleteAccountTypes": {
+        "value": {
+          "data": {
+            "accountId": "62977d46-7a50-41c9-8d84-38272ac2a8df",
+            "name": "Saving account",
+            "description": "Accounts destined to savings"
+          }
+        }
+      },
+      "exampleGetAllAccountTypes": {
+        "value": {
+          "data": [
+            {
+              "accountId": "62977d46-7a50-41c9-8d84-38272ac2a8df",
+              "name": "Saving account",
+              "description": "Accounts destined to savings"
+            },
+            {
+              "accountId": "62977d46-7a50-41c9-8d84-38272ac2a8dg",
+              "name": "Saving account second",
+              "description": "Accounts destined to savings second"
+            },
+            {
+              "accountId": "62977d46-7a50-41c9-8d84-38272ac2a8dl",
+              "name": "Saving account third",
+              "description": "Accounts destined to savings third"
+            }
+          ],
+          "paging": {
+            "init": 1,
+            "limit": 25,
+            "total": 35,
+            "numPage": 1,
+            "totalPages": 7,
+            "links": {
+              "self": {
+                "href": "https://api.organization.es/api-financial-instruments/v1/insurance-types?$init=20&$limit=20"
+              },
+              "first": {
+                "href": "https://api.organization.es/api-financial-instruments/v1/insurance-types?$init=1&$limit=20"
+              },
+              "previous": {
+                "href": "https://api.organization.es/api-financial-instruments/v1/insurance-types?$init=1&$limit=20"
+              },
+              "next": {
+                "href": "https://api.organization.es/api-financial-instruments/v1/insurance-types?$init=40&$limit=20"
+              },
+              "last": {
+                "href": "https://api.organization.es/api-financial-instruments/v1/insurance-types?$init=100&$limit=20"
+              }
+            }
+          }
+        }
+      },
+      "exampleGetAllAccountTypes2": {
+        "value": {
+          "data": [
+            {
+              "accountId": "62977d46-7a50-41c9-8d84-38272ac2a8df",
+              "name": "Saving account",
+              "description": "Accounts destined to savings"
+            }
+          ],
+          "paging": {
+            "init": 1,
+            "limit": 25,
+            "total": 35,
+            "numPage": 1,
+            "totalPages": 7,
+            "links": {
+              "self": {
+                "href": "https://api.organization.es/api-financial-instruments/v1/insurance-types?$init=20&$limit=20"
+              },
+              "first": {
+                "href": "https://api.organization.es/api-financial-instruments/v1/insurance-types?$init=1&$limit=20"
+              },
+              "previous": {
+                "href": "https://api.organization.es/api-financial-instruments/v1/insurance-types?$init=1&$limit=20"
+              },
+              "next": {
+                "href": "https://api.organization.es/api-financial-instruments/v1/insurance-types?$init=40&$limit=20"
+              },
+              "last": {
+                "href": "https://api.organization.es/api-financial-instruments/v1/insurance-types?$init=100&$limit=20"
+              }
+            }
+          }
+        }
+      },
+      "exampleDataCustomers": {
+        "value": {
+          "data": {
+            "customerId": "62977d46-7a50-41c9-8d84-38272ac2a8df",
+            "firstName": "John",
+            "lastName": "Doe",
+            "email": "john.doe@email.com"
+          }
+        }
+      },
+      "exampleGetAllCustomers": {
+        "value": [
+          {
+            "customerId": "62977d46-7a50-41c9-8d84-38272ac2a8df",
+            "firstName": "John",
+            "lastName": "Doe",
+            "email": "john.doe@email.com"
+          },
+          {
+            "customerId": "62977d46-7a50-41c9-8d84-38272ac2a8df",
+            "firstName": "Pepe",
+            "lastName": "Jepa",
+            "email": "pepe.jepa@email.com"
+          },
+          {
+            "customerId": "62977d46-7a50-41c9-8d84-38272ac2a8df",
+            "firstName": "David",
+            "lastName": "Dach",
+            "email": "david.bach@email.com"
+          }
+        ]
+      },
+      "exampleGetAllCustomers2": {
+        "value": [
+          {
+            "customerId": "62977d46-7a50-41c9-8d84-38272ac2a8df",
+            "firstName": "John",
+            "lastName": "Doe",
+            "email": "john.doe@email.com"
+          }
+        ]
+      },
+      "examplePostCustomersAccounts": {
+        "value": {
+          "data": {
+            "accountId": "62977d46-7a50-41c9-8d84-38272ac2a8df",
+            "accountNumber": 21369,
+            "accountType": {
+              "accountId": "62977d46-7a50-41c9-8d84-38272ac2a8df",
+              "name": "Saving account",
+              "description": "Accounts destined to savings"
+            },
+            "balance": 100000000.99,
+            "currency": "EUR"
+          }
+        }
+      },
+      "exampleGetAllCustomersAccounts": {
+        "value": {
+          "data": [
+            {
+              "accountId": "62977d46-7a50-41c9-8d84-38272ac2a8df",
+              "accountNumber": 21369,
+              "accountType": {
+                "accountId": "62977d46-7a50-41c9-8d84-38272ac2a8df",
+                "name": "Saving account",
+                "description": "Accounts destined to savings"
+              },
+              "balance": 100000000.99,
+              "currency": "USD"
+            },
+            {
+              "accountId": "12399ad46-0a23-ff9c-c3a4-02511ed7b2af",
+              "accountNumber": 32177,
+              "accountType": {
+                "accountId": "12399ad46-0a23-ff9c-c3a4-02511ed7b2af",
+                "name": "Saving account",
+                "description": "Accounts destined to savings"
+              },
+              "balance": 150012045.99,
+              "currency": "USD"
+            }
+          ],
+          "paging": {
+            "init": 1,
+            "limit": 25,
+            "total": 35,
+            "numPage": 1,
+            "totalPages": 7,
+            "links": {
+              "self": {
+                "href": "https://api.organization.es/api-financial-instruments/v1/customers/2/accounts?$init=20&$limit=20"
+              },
+              "first": {
+                "href": "https://api.organization.es/api-financial-instruments/v1/customers/2/accounts?$init=1&$limit=20"
+              },
+              "previous": {
+                "href": "https://api.organization.es/api-financial-instruments/v1/customers/2/accounts?$init=1&$limit=20"
+              },
+              "next": {
+                "href": "https://api.organization.es/api-financial-instruments/v1/customers/2/accounts?$init=40&$limit=20"
+              },
+              "last": {
+                "href": "https://api.organization.es/api-financial-instruments/v1/customers/2/accounts?$init=100&$limit=20"
+              }
+            }
+          }
+        }
+      },
+      "exampleGetOneCustomersAccounts": {
+        "value": {
+          "data": {
+            "accountId": "62977d46-7a50-41c9-8d84-38272ac2a8df",
+            "accountNumber": 21369,
+            "accountType": {
+              "accountId": "62977d46-7a50-41c9-8d84-38272ac2a8df",
+              "name": "Saving account",
+              "description": "Accounts destined to savings"
+            },
+            "balance": 100000000.99,
+            "currency": "EUR"
+          }
+        }
+      },
+      "exampleDeleteCustomersAccounts": {
+        "value": {
+          "data": {
+            "accountId": "62977d46-7a50-41c9-8d84-38272ac2a8df",
+            "accountNumber": 21369,
+            "accountType": {
+              "accountId": "62977d46-7a50-41c9-8d84-38272ac2a8df",
+              "name": "Saving account",
+              "description": "Accounts destined to savings"
+            },
+            "balance": 100000000.99,
+            "currency": "EUR"
+          }
+        }
+      }
+    }
+  }
+}
